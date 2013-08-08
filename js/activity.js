@@ -10,7 +10,38 @@ define(function (require) {
         // Initialize the activity.
         activity.setup();
 
-        new window.gearsketch.GearSketch();
+        var gearSketch = new window.gearsketch.GearSketch();
+        console.log(gearSketch);
+
+        // Play button.
+        var playButton = document.getElementById("play-button");
+        playButton.addEventListener('click', function (event) {
+            if (gearSketch.isDemoPlaying) {
+                gearSketch.stopDemo();
+                return;
+            }
+            gearSketch.selectedButton = "playButton";
+        });
+
+        // Clear button.
+        var clearButton = document.getElementById("clear-button");
+        clearButton.addEventListener('click', function (event) {
+            if (gearSketch.isDemoPlaying) {
+                gearSketch.stopDemo();
+                return;
+            }
+            gearSketch.board.clear();
+        });
+
+        // Help button.
+        var helpButton = document.getElementById("help-button");
+        helpButton.addEventListener('click', function (event) {
+            if (gearSketch.isDemoPlaying) {
+                gearSketch.stopDemo();
+                return;
+            }
+            gearSketch.playDemo();
+        });
 
     });
 

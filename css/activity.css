@@ -1,3 +1,15 @@
 #main-toolbar #activity-button {
   background-image: url(../activity/activity-icon.svg);
 }
+
+#main-toolbar #play-button {
+  background-image: url(../icons/media-playback-start.svg);
+}
+
+#main-toolbar #clear-button {
+  background-image: url(../icons/edit-clear.svg);
+}
+
+#main-toolbar #help-button {
+  background-image: url(../icons/toolbar-help.svg);
+}
