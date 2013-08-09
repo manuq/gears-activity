@@ -11,13 +11,13 @@ define(function (require) {
         // Initialize the activity.
         activity.setup();
 
-        var gearSketch = new window.gearsketch.GearSketch();
-        console.log(gearSketch);
+        var gearSketch = new window.gearsketch.GearSketch(false);
 
         // Gear button.
         var gearButton = document.getElementById("gear-button");
         gearButton.addEventListener('click', function (event) {
             if (gearSketch.isDemoPlaying) {
+                gearSketch.showButtons = false;
                 gearSketch.stopDemo();
                 return;
             }
@@ -28,6 +28,7 @@ define(function (require) {
         var chainButton = document.getElementById("chain-button");
         chainButton.addEventListener('click', function (event) {
             if (gearSketch.isDemoPlaying) {
+                gearSketch.showButtons = false;
                 gearSketch.stopDemo();
                 return;
             }
@@ -38,6 +39,7 @@ define(function (require) {
         var momentumButton = document.getElementById("momentum-button");
         momentumButton.addEventListener('click', function (event) {
             if (gearSketch.isDemoPlaying) {
+                gearSketch.showButtons = false;
                 gearSketch.stopDemo();
                 return;
             }
@@ -48,6 +50,7 @@ define(function (require) {
         var playButton = document.getElementById("play-button");
         playButton.addEventListener('click', function (event) {
             if (gearSketch.isDemoPlaying) {
+                gearSketch.showButtons = false;
                 gearSketch.stopDemo();
                 return;
             }
@@ -61,6 +64,7 @@ define(function (require) {
         var clearButton = document.getElementById("clear-button");
         clearButton.addEventListener('click', function (event) {
             if (gearSketch.isDemoPlaying) {
+                gearSketch.showButtons = false;
                 gearSketch.stopDemo();
                 return;
             }
@@ -74,6 +78,7 @@ define(function (require) {
                 gearSketch.stopDemo();
                 return;
             }
+            gearSketch.showButtons = true;
             gearSketch.playDemo();
         });
 

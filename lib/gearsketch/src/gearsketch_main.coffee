@@ -74,8 +74,9 @@ class GearSketch
   movementCompletion: 0
   restTimer: 0
 
-  constructor: ->
+  constructor: (showButtons = true) ->
     @loadButtons()
+    @showButtons = showButtons
     @loadDemoPointer()
     @loadBoard()
     @canvas = document.getElementById("gearsketch_canvas")
@@ -239,6 +240,9 @@ class GearSketch
     y < button.location.y + button.height + 2 * button.padding
 
   getButtonAt: (x, y) ->
+    if not @showButtons
+        return null
+
     for own buttonName, button of @buttons
       if @isButtonAt(x, y, button)
         return button
@@ -584,7 +588,7 @@ class GearSketch
         ctx.restore()
 
       # draw buttons
-      if @areButtonsLoaded
+      if @areButtonsLoaded and @showButtons
         for own buttonName of @buttons
           @drawButton(ctx, @buttons[buttonName])
 
