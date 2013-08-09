@@ -74,6 +74,8 @@ class GearSketch
   movementCompletion: 0
   restTimer: 0
 
+  # Passing false to showButtons will hide them, unless the demo is
+  # playing. This comes handy when adding controls outside the canvas.
   constructor: (showButtons = true) ->
     @loadButtons()
     @showButtons = showButtons
@@ -240,7 +242,7 @@ class GearSketch
     y < button.location.y + button.height + 2 * button.padding
 
   getButtonAt: (x, y) ->
-    if not @showButtons
+    if not @shouldShowButtons()
         return null
 
     for own buttonName, button of @buttons
@@ -588,7 +590,7 @@ class GearSketch
         ctx.restore()
 
       # draw buttons
-      if @areButtonsLoaded and @showButtons
+      if @areButtonsLoaded and @shouldShowButtons()
         for own buttonName of @buttons
           @drawButton(ctx, @buttons[buttonName])
 
@@ -822,6 +824,9 @@ class GearSketch
       center = new Point(movement.from.x , movement.from.y - movement.radius)
       angle = 0.5 * Math.PI - movementCompletion * Math.PI
       @pointerLocation = center.plus(Point.polar(angle, movement.radius))
+
+  shouldShowButtons: ->
+    return @showButtons or @isDemoPlaying
 
   playDemo: ->
     @loadDemoMovements() # load these on each play in case canvas size changed

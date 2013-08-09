@@ -17,9 +17,7 @@ define(function (require) {
         var gearButton = document.getElementById("gear-button");
         gearButton.addEventListener('click', function (event) {
             if (gearSketch.isDemoPlaying) {
-                gearSketch.showButtons = false;
                 gearSketch.stopDemo();
-                return;
             }
             gearSketch.selectedButton = "gearButton";
         });
@@ -28,9 +26,7 @@ define(function (require) {
         var chainButton = document.getElementById("chain-button");
         chainButton.addEventListener('click', function (event) {
             if (gearSketch.isDemoPlaying) {
-                gearSketch.showButtons = false;
                 gearSketch.stopDemo();
-                return;
             }
             gearSketch.selectedButton = "chainButton";
         });
@@ -39,9 +35,7 @@ define(function (require) {
         var momentumButton = document.getElementById("momentum-button");
         momentumButton.addEventListener('click', function (event) {
             if (gearSketch.isDemoPlaying) {
-                gearSketch.showButtons = false;
                 gearSketch.stopDemo();
-                return;
             }
             gearSketch.selectedButton = "momentumButton";
         });
@@ -50,9 +44,7 @@ define(function (require) {
         var playButton = document.getElementById("play-button");
         playButton.addEventListener('click', function (event) {
             if (gearSketch.isDemoPlaying) {
-                gearSketch.showButtons = false;
                 gearSketch.stopDemo();
-                return;
             }
             gearSketch.selectedButton = "playButton";
         });
@@ -78,7 +70,7 @@ define(function (require) {
                 gearSketch.stopDemo();
                 return;
             }
-            gearSketch.showButtons = true;
+            gearSketch.selectedButton = "gearButton";
             gearSketch.playDemo();
         });
 
