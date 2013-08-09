@@ -11,43 +11,57 @@ define(function (require) {
 
         var gearSketch = new window.gearsketch.GearSketch(false);
 
-        // Gear button.
+        var radioButtons;
         var gearButton = document.getElementById("gear-button");
+        var chainButton = document.getElementById("chain-button");
+        var momentumButton = document.getElementById("momentum-button");
+        var playButton = document.getElementById("play-button");
+
+        var buttonNames = {
+            "gearButton": gearButton,
+            "chainButton": chainButton,
+            "momentumButton": momentumButton,
+            "playButton": playButton
+        };
+
+        gearSketch.selectButton = function (buttonName) {
+            radioButtons.setActive(buttonNames[buttonName]);
+            return this.selectedButton = buttonName;
+        }
+
+        // Gear button.
         gearButton.addEventListener('click', function (event) {
             if (gearSketch.isDemoPlaying) {
                 gearSketch.stopDemo();
             }
-            gearSketch.selectedButton = "gearButton";
+            gearSketch.selectButton("gearButton");
         });
 
         // Chain button.
-        var chainButton = document.getElementById("chain-button");
         chainButton.addEventListener('click', function (event) {
             if (gearSketch.isDemoPlaying) {
                 gearSketch.stopDemo();
             }
-            gearSketch.selectedButton = "chainButton";
+            gearSketch.selectButton("chainButton");
         });
 
         // Momentum button.
-        var momentumButton = document.getElementById("momentum-button");
         momentumButton.addEventListener('click', function (event) {
             if (gearSketch.isDemoPlaying) {
                 gearSketch.stopDemo();
             }
-            gearSketch.selectedButton = "momentumButton";
+            gearSketch.selectButton("momentumButton");
         });
 
         // Play button.
-        var playButton = document.getElementById("play-button");
         playButton.addEventListener('click', function (event) {
             if (gearSketch.isDemoPlaying) {
                 gearSketch.stopDemo();
             }
-            gearSketch.selectedButton = "playButton";
+            gearSketch.selectButton("playButton");
         });
 
-        var radioButtons = new radioButtonsGroup.RadioButtonsGroup(
+        radioButtons = new radioButtonsGroup.RadioButtonsGroup(
         [gearButton, chainButton, momentumButton, playButton]);
 
         // Clear button.
@@ -68,7 +82,6 @@ define(function (require) {
                 gearSketch.stopDemo();
                 return;
             }
-            gearSketch.selectedButton = "gearButton";
             gearSketch.playDemo();
         });
 

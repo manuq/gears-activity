@@ -135,6 +135,12 @@ class GearSketch
   clearMessage: ->
     @message = ""
 
+  selectButton: (buttonName) ->
+    @selectedButton = buttonName
+
+  shouldShowButtons: ->
+    return @showButtons or @isDemoPlaying
+
   # Input callback methods
   addCanvasListeners: ->
     canvasEventHandler = Hammer(@canvas, {drag_min_distance: 1})
@@ -179,7 +185,7 @@ class GearSketch
         else if button.name is "helpButton"
           @playDemo()
         else
-          @selectedButton = button.name
+          @selectButton(button.name)
       else if @selectedButton is "gearButton"
         @selectedGear = @board.getTopLevelGearAt(point)
         if @selectedGear?
@@ -824,9 +830,6 @@ class GearSketch
       center = new Point(movement.from.x , movement.from.y - movement.radius)
       angle = 0.5 * Math.PI - movementCompletion * Math.PI
       @pointerLocation = center.plus(Point.polar(angle, movement.radius))
-
-  shouldShowButtons: ->
-    return @showButtons or @isDemoPlaying
 
   playDemo: ->
     @loadDemoMovements() # load these on each play in case canvas size changed
