@@ -1,5 +1,6 @@
 define(function (require) {
     var activity = require("sugar-web/activity/activity");
+    var radioButtonsGroup = require("sugar-web/graphics/radiobuttonsgroup");
     require("gearsketch_util");
     require("gearsketch_model");
     require("gearsketch_main");
@@ -13,6 +14,36 @@ define(function (require) {
         var gearSketch = new window.gearsketch.GearSketch();
         console.log(gearSketch);
 
+        // Gear button.
+        var gearButton = document.getElementById("gear-button");
+        gearButton.addEventListener('click', function (event) {
+            if (gearSketch.isDemoPlaying) {
+                gearSketch.stopDemo();
+                return;
+            }
+            gearSketch.selectedButton = "gearButton";
+        });
+
+        // Chain button.
+        var chainButton = document.getElementById("chain-button");
+        chainButton.addEventListener('click', function (event) {
+            if (gearSketch.isDemoPlaying) {
+                gearSketch.stopDemo();
+                return;
+            }
+            gearSketch.selectedButton = "chainButton";
+        });
+
+        // Momentum button.
+        var momentumButton = document.getElementById("momentum-button");
+        momentumButton.addEventListener('click', function (event) {
+            if (gearSketch.isDemoPlaying) {
+                gearSketch.stopDemo();
+                return;
+            }
+            gearSketch.selectedButton = "momentumButton";
+        });
+
         // Play button.
         var playButton = document.getElementById("play-button");
         playButton.addEventListener('click', function (event) {
@@ -22,6 +53,9 @@ define(function (require) {
             }
             gearSketch.selectedButton = "playButton";
         });
+
+        var radioButtons = new radioButtonsGroup.RadioButtonsGroup(
+        [gearButton, chainButton, momentumButton, playButton]);
 
         // Clear button.
         var clearButton = document.getElementById("clear-button");
