@@ -1,5 +1,5 @@
 [Activity]
-name = Gears Activity
+name = Gears
 activity_version = 1
 bundle_id = org.sugarlabs.GearsActivity
 exec = sugar-activity-web
