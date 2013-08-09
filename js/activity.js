@@ -6,10 +6,41 @@ define(function (require) {
     // Manipulate the DOM only when it is ready.
     require(['domReady!'], function (doc) {
 
+        var gearSketch;
+
         // Initialize the activity.
         activity.setup();
 
-        var gearSketch = new window.gearsketch.GearSketch(false);
+        activity.write = function (callback) {
+            console.log("writing...");
+            var jsonData = JSON.stringify(gearSketch.board);
+            this.getDatastoreObject().setDataAsText(jsonData);
+            this.getDatastoreObject().save(function (error) {
+                if (error === null) {
+                    console.log("write done.");
+                }
+                else {
+                    console.log("write failed.");
+                }
+                callback(error);
+            });
+        };
+
+        gearSketch = new window.gearsketch.GearSketch(false);
+
+        // Read from the datastore
+        var datastoreObject = activity.getDatastoreObject();
+        function onLoaded(error, metadata, jsonData) {
+            if (error === null) {
+                gearSketch.board = window.gearsketch.model.Board.
+                    fromObject(JSON.parse(jsonData));
+                console.log("read done.");
+            }
+            else {
+                console.log("read failed.");
+            }
+        }
+        datastoreObject.loadAsText(onLoaded);
 
         var radioButtons;
         var gearButton = document.getElementById("gear-button");
