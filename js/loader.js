@@ -5,10 +5,12 @@ requirejs.config({
             exports: 'gearsketch/gearsketch_util'
         },
         gearsketch_model: {
-            exports: 'gearsketch/gearsketch_model'
+            exports: 'gearsketch/gearsketch_model',
+            deps: ['gearsketch_util']
         },
         gearsketch_main: {
-            exports: 'gearsketch/gearsketch_main'
+            exports: 'gearsketch/gearsketch_main',
+            deps: ['gearsketch_model', 'gearsketch_util']
         }
     },
     paths: {
