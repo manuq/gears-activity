@@ -7,15 +7,15 @@
 }
 
 #main-toolbar #gear-button {
-  background-image: url(../img/GearIcon.png);
+  background-image: url(../icons/GearIcon.svg);
 }
 
 #main-toolbar #chain-button {
-  background-image: url(../img/ChainIcon.png);
+  background-image: url(../icons/ChainIcon.svg);
 }
 
 #main-toolbar #momentum-button {
-  background-image: url(../img/MomentumIcon.png);
+  background-image: url(../icons/MomentumIcon.svg);
 }
 
 #main-toolbar #play-button {
