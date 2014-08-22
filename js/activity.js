@@ -56,7 +56,6 @@ define(function (require) {
         };
 
         gearSketch.selectButton = function (buttonName) {
-            radioButtons.setActive(buttonNames[buttonName]);
             return this.selectedButton = buttonName;
         }
 
